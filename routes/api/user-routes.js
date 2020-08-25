@@ -50,6 +50,27 @@ router.post('/', (req, res) => {
     });
 });
 
+// use post for login route instead of get so that password and other sensitive information is stored in req.body instead of as plaintext in the url
+router.post('/login', (req, res) => {
+  // expects { email: 'lernantino@gmail.com', password: 'pw1234 }
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+    .then(async (dbUserData) => {
+      if (!dbUserData) {
+        return res.status(400).json({ message: 'No user with that email address!' });
+      }
+      const isValidPassword = await dbUserData.checkPassword(req.body.password);
+
+      if (!isValidPassword) {
+        return res.status(400).json({ message: 'Incorrect password!' });
+      }
+      return res.json({ user: dbUserData, message: 'You are now logged in!' });
+    });
+});
+
 // PUT /api/users/1
 router.put('/:id', (req, res) => {
   // expects {username: 'Lernantino', email: 'lernantino@gmail.com', password: 'password1234'}, but you can use req.body if the key value pairs match the model's column names exactly
