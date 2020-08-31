@@ -1,15 +1,14 @@
-const User = require('./User');
+// import all models
 const Post = require('./Post');
+const User = require('./User');
 const Vote = require('./Vote');
 const Comment = require('./Comment');
 
 // create associations
-// one user can make many posts
 User.hasMany(Post, {
   foreignKey: 'user_id'
 });
 
-// posts are made by only one user
 Post.belongsTo(User, {
   foreignKey: 'user_id'
 });
@@ -26,10 +25,8 @@ Post.belongsToMany(User, {
   foreignKey: 'post_id'
 });
 
-// By also creating one-to-many associations directly between these models, we can perform aggregated SQL functions between models
-// In this case, we'll see a total count of votes for a single post when queried
 Vote.belongsTo(User, {
-  foreignKey: 'user_id',
+  foreignKey: 'user_id'
 });
 
 Vote.belongsTo(Post, {

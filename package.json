@@ -1,28 +1,23 @@
 {
-  "name": "just-tech-news",
+  "name": "newsfeed-api",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+    "test": "jest",
     "start": "node server.js",
-    "mysql": "mysql -u root -p"
+    "seeds": "node seeds/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Dannymont94/just-tech-news.git"
-  },
-  "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Dannymont94/just-tech-news/issues"
-  },
-  "homepage": "https://github.com/Dannymont94/just-tech-news#readme",
   "dependencies": {
-    "bcrypt": "^5.0.0",
+    "bcrypt": "^4.0.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mysql2": "^2.1.0",
-    "sequelize": "^6.3.4"
+    "sequelize": "^5.21.5"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0"
   }
 }
