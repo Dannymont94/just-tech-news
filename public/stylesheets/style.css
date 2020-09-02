@@ -55,6 +55,8 @@ textarea:focus, input:focus {
 textarea {
   min-width: 40%;
   min-height: 100px;
+  resize: vertical;
+  max-height: 400px;
 }
 
 form > div {
